@@ -1,5 +1,5 @@
 {
-  description = "cd-rip: A flake for ripping from a cd";
+  description = "cd-rip: rip from a cd";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
