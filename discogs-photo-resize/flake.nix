@@ -1,5 +1,5 @@
 {
-  description = "A very basic flake";
+  description = "discogs-photo-resize: resize photos for discogs";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
