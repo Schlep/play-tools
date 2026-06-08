@@ -13,7 +13,7 @@
     pkgs = import nixpkgs {
       inherit system;
       config = {
-        allowUnfreePreficate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
+        allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
           #""
         ];
       };
