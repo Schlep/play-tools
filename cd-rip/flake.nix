@@ -13,7 +13,7 @@
     pkgs = import nixpkgs {
       inherit system;
       config = {
-        allowUnfreePreficate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
+        allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
           #""
         ];
       };
@@ -37,7 +37,7 @@
         echo "  [priority]     : The priority of the rip (default: max)"
         echo ""
 
-        if [[ -n "$1" ]]; then
+        if [[ -n "''${1:-}" ]]; then
             if [[ "''${1,,}" = "n" ]]; then
                 RARG=""
                 NARG="-N"
@@ -52,7 +52,7 @@
         echo RARG:["$RARG"]
         echo NARG:["$NARG"]
 
-        if [[ -n "$2" ]]
+        if [[ -n "''${2:-}" ]]
         then
             FIRSTITEM=$(echo "''$2" | cut -d ',' -f 1)
             echo FIRSTITEM:["$FIRSTITEM"]
@@ -70,7 +70,7 @@
         echo LARG:["$LARG"]
         echo QARG:["$QARG"]
 
-        if [[ -n "$3" ]]
+        if [[ -n "''${3:-}" ]]
         then
             PARG="-P $3"
         else
@@ -79,7 +79,7 @@
         echo PARG:["$PARG"]
 
         #shellcheck disable=SC2086
-        systemd-inhibit ${cyanrip}/bin/cyanrip -E -U $QARG -o flac -s 667 $PARG $RARG $NARG $LARG -T simple \
+        systemd-inhibit ${cyanrip}/bin/cyanrip -U $QARG -o flac -s 667 $PARG $RARG $NARG $LARG -T simple \
         -L "{album}{if #totaldiscs# > #1# CD|disc|}$FIRSTVAL" \
         -M "{album}{if #releasecomment# > #0# (|releasecomment|)}$FIRSTVAL" \
         -D "rip/{album_artist}/{album}{if #releasecomment# > #0# (|releasecomment|)}{if #totaldiscs# > #1# - |disc|}{if #discname# > #0# |discname|}" \
